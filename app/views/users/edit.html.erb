@@ -1,0 +1,45 @@
+<% if @user.errors.any? %>
+  <div id="error-explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @user do |form| %>
+  <%= form.label :username, "New username..." %></br>
+  <%= form.text_field :username, value: @user.username %></br>
+  <%= form.label :email, "New email..." %></br>
+  <%= form.text_field :email, value: @user.email %></br>
+  <%= form.label :password, raw('New <a href="https://www.cyber.gov.au/protect-yourself/securing-your-accounts/passphrases/creating-strong-passphrases" target="_blank">Password</a>.') %></br>
+  <%= form.text_field :password, value: @user.password %></br></br>
+  <%= form.submit "Update" %>
+<% end %>
+
+
+<%# <%= form_tag("/users", method: "post") do %>
+<%#   <%= label_tag(:username, "Username") %>
+<%#   <%= text_field_tag(:username) %>
+<%#   <%= label_tag(:email, "Email") %>
+<%#   <%= text_field_tag(:email) %>
+<%#   <%= label_tag(:password, "Password") %>
+<%#   <%= text_field_tag(:password) %>
+<%#   <%= submit_tag("Edit") %>
+<%# <% end %>
+
+<%# <form accept-charset="UTF-8" action="/users" method="post">
+    <input type="hidden" name="authenticity_token" value="BcLwzq5izc4iS7v1HbALYp3xyL713x7ODUzQlRa0mIDkXhTlXRQ1IDKZAdxo8UXv">
+    <label for="username">Username:</label></br>
+    <input type="text" id="username" name="user[username]"></br>
+    <label for="email">Email:</label></br>
+    <input type="email" id="email" name="user[email]"></br>
+    <label for="password">Password:</label></br>
+    <input type="password" id="password" name="user[password]"></br></br>
+    <input name="commit" type="submit" value="Create" />
+</form> %>
+
+
